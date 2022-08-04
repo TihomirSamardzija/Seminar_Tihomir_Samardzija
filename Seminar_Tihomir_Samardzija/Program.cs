@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Seminar_Tihomir_Samardzija.Data;
+using Seminar_Tihomir_Samardzija.Models.Dbo;
+using Seminar_Tihomir_Samardzija.Services.Implementation;
+using Seminar_Tihomir_Samardzija.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +13,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IIdentityService, IdentityService>();
 
 var app = builder.Build();
 
@@ -40,5 +47,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+app.Services.GetService<IIdentityService>();
 
 app.Run();

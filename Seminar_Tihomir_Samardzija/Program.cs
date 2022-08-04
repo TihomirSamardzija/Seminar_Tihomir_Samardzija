@@ -17,6 +17,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IIdentityService, IdentityService>();

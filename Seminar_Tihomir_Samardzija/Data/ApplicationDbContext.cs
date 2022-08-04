@@ -13,5 +13,6 @@ namespace Seminar_Tihomir_Samardzija.Data
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet <Adress> Adress { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

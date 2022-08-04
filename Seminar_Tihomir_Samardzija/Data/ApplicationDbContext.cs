@@ -10,5 +10,8 @@ namespace Seminar_Tihomir_Samardzija.Data
             : base(options)
         {
         }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet <Adress> Adress { get; set; }
     }
 }

@@ -2,9 +2,8 @@
 
 namespace Seminar_Tihomir_Samardzija.Models.ViewModel
 {
-    public class ProductViewModel : ProductBase
+    public class ProductCategoryViewModel : ProductCategoryBase
     {
         public int Id { get; set; }
-        public ProductCategoryViewModel ProductCategory { get; set; }
     }
 }

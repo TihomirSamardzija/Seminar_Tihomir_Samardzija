@@ -12,6 +12,9 @@ namespace Seminar_Tihomir_Samardzija.Mapping
             CreateMap<ProductBinding, Product>();
             CreateMap<Product, ProductViewModel>();
 
+            CreateMap<ProductCategoryBinding, ProductCategory>();
+            CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<ProductCategoryUpdateBinding, ProductCategory>();
         }
     }
 }

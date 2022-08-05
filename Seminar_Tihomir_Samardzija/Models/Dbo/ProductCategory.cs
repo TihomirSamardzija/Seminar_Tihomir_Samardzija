@@ -3,11 +3,9 @@ using Seminar_Tihomir_Samardzija.Models.Dbo.Base;
 
 namespace Seminar_Tihomir_Samardzija.Models.Dbo
 {
-    public class Product : ProductBase, IEntityBase
+    public class ProductCategory : ProductCategoryBase, IEntityBase
     {
         public int Id { get; set; }
         public DateTime Created { get; set; }
-        public ProductCategory ProductCategory { get; set; }
-
     }
 }

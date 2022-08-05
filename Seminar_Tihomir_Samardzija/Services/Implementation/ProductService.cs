@@ -90,11 +90,11 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         }
 
         /// <summary>
-        /// Product update
+        /// Product category update
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ProductCategoryViewModel> AddProductCategoryAsync(ProductCategoryUpdateBinding model)
+        public async Task<ProductCategoryViewModel> UpdateProductCategoryAsync(ProductCategoryUpdateBinding model)
         {
             var dbo = await db.ProductCategory.FindAsync(model.Id);
             mapper.Map(model, dbo);

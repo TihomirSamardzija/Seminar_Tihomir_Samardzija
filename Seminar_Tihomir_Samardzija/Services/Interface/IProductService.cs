@@ -8,5 +8,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Interface
         Task<ProductViewModel> AddProductAsync(ProductBinding model);
         Task<ProductViewModel> GetProductAsync(int id);
         Task<List<ProductViewModel>> GetProductsAsync();
+        Task<ProductCategoryViewModel> UpdateProductCategoryAsync(ProductCategoryUpdateBinding model);
+        Task<ProductCategoryViewModel> AddProductCategoryAsync(ProductCategoryBinding model);
     }
 }

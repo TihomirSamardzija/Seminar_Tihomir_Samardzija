@@ -3,10 +3,14 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+@{
     var user = await UserManager.GetUserAsync(User);
+}
+
+<ul class="navbar-nav">
+@if (user != null)
+{
+
     var userRoles = await UserManager.GetRolesAsync(user);
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.Firstname @user.Lastname!</a>

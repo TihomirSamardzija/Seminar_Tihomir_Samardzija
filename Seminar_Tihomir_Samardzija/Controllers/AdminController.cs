@@ -35,5 +35,17 @@ namespace Seminar_Tihomir_Samardzija.Controllers
             await productService.AddProductAsync(model);
             return RedirectToAction("ProductAdministration");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddProductCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddProductCategory(ProductCategoryBinding model)
+        {
+            await productService.AddProductCategoryAsync(model);
+            return RedirectToAction("ProductAdministration");
+        }
     }
 }

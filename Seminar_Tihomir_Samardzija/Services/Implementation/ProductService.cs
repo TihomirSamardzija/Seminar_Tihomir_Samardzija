@@ -27,6 +27,12 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         public async Task<ProductViewModel> AddProductAsync(ProductBinding model)
         {
             var dbo = mapper.Map<Product>(model);
+            var productCategory = await db.ProductCategory.FindAsync(model.ProductCategoryId);
+            if (productCategory == null)
+            {
+                return null;
+            }
+            dbo.ProductCategory = productCategory;
             db.Product.Add(dbo);
             await db.SaveChangesAsync();
             return mapper.Map<ProductViewModel>(dbo);

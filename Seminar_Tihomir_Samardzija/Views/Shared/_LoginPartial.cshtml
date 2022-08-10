@@ -31,26 +31,17 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="@Url.Action("Users", "Admin")">Administracija korisnika</a>
 
-               </li>
-                @* <li class="nav-item">
-                    <a class="nav-link text-dark" href="@Url.Action("Orders", "Admin")">Narudžbe</a>
-
-                </li>*@
+                </li>
 
                 break;
 
             case Roles.BasicUser:
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="@Url.Action("Index", "Home")">Košarica</a>
+                    <a class="nav-link text-dark" href="@Url.Action("Index", "Home")">IndexPage</a>
 
                 </li>
                 break;
         }
-
-
-
-
-
 
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -58,10 +49,10 @@
             </form>
         </li>
     }
+
     else
+
     {
-
-
         <li class="nav-item">
             <a class="nav-link text-dark" href="@Url.Action("Registration", "User")">Registracija</a>
         </li>

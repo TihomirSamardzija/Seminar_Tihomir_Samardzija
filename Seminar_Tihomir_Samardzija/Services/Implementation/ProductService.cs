@@ -84,6 +84,18 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         }
 
         /// <summary>
+        /// Delete product
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task DeleteProductAsync(Product model)
+        {
+            var product = await db.Product.FirstOrDefaultAsync(x => x.Id == model.Id);
+            db.Product.Remove(product);
+            await db.SaveChangesAsync();
+        }
+
+        /// <summary>
         /// Dodaj kategoriju proizvoda
         /// </summary>
         /// <param name="model"></param>

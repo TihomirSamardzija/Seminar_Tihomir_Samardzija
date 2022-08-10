@@ -58,7 +58,7 @@ builder.Services.AddScoped<IValidationService, ValidationService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
-builder.Services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService>();
+//builder.Services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 

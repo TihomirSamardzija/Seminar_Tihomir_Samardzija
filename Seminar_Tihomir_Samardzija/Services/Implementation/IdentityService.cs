@@ -105,10 +105,6 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
                     throw new Exception("Korisnik nije dodan u rolu!");
                 }
             }
-
-
-
         }
-
     }
 }

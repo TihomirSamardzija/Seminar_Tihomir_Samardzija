@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Seminar_Tihomir_Samardzija.Models.Dbo;
 using Seminar_Tihomir_Samardzija.Models.Dbo.Base;
 using Seminar_Tihomir_Samardzija.Models.ViewModel;
+using Seminar_Tihomir_Samardzija.Models.Binding;
 
 namespace Seminar_Tihomir_Samardzija.Data
 {
@@ -68,7 +69,9 @@ namespace Seminar_Tihomir_Samardzija.Data
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet <Adress> Adress { get; set; }
         public DbSet<Product> Product { get; set; }
-        public DbSet<ProductViewModel>? ProductViewModel { get; set; }
+        public DbSet<ProductViewModel> ProductViewModel { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<ProductCategoryUpdateBinding>? ProductCategoryUpdateBinding { get; set; }
+        public DbSet<FileStorage> FileStorage { get; set; }
     }
 }

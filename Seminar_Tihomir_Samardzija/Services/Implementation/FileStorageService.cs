@@ -127,7 +127,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
             {
                 return null;
             }
-            string folderPath = env.ContentRootPath + @"\WebShop\upload\" + fileuploadId;
+            string folderPath = env.ContentRootPath + @"\WebImages\upload\" + fileuploadId;
             Directory.CreateDirectory(folderPath);
             var filePath = Path.Combine(folderPath, file.FileName);
 

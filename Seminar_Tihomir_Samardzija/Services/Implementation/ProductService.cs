@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Seminar_Tihomir_Samardzija.Data;
 using Seminar_Tihomir_Samardzija.Models.Binding;
 using Seminar_Tihomir_Samardzija.Models.Dbo;
+using Seminar_Tihomir_Samardzija.Models.Dto;
 using Seminar_Tihomir_Samardzija.Models.ViewModel;
 using Seminar_Tihomir_Samardzija.Services.Interface;
 
@@ -10,13 +12,19 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
 {
     public class ProductService : IProductService
     {
+        private readonly IFileStorageService fileStorageService;
         private readonly ApplicationDbContext db;
         private readonly IMapper mapper;
+        private readonly AppConfig appConfig;
 
-        public ProductService(ApplicationDbContext db, IMapper mapper)
+        public ProductService(ApplicationDbContext db,
+            IMapper mapper, IOptions<AppConfig> appConfig,
+            IFileStorageService fileStorageService)
         {
+            this.appConfig = appConfig.Value;
             this.db = db;
             this.mapper = mapper;
+            this.fileStorageService = fileStorageService;
         }
 
         /// <summary>
@@ -58,6 +66,21 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
             var dbo = await db.Product.ToListAsync();
             return dbo.Select(x => mapper.Map<ProductViewModel>(x)).ToList();
 
+        }
+
+        /// <summary>
+        /// Update product
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ProductViewModel> UpdateProductAsync(ProductUpdateBinding model)
+        {
+            var category = await db.ProductCategory.FirstOrDefaultAsync(x => x.Id == model.ProductCategoryId);
+            var dbo = await db.Product.FindAsync(model.Id);
+            mapper.Map(model, dbo);
+            dbo.ProductCategory = category;
+            await db.SaveChangesAsync();
+            return mapper.Map<ProductViewModel>(dbo);
         }
 
         /// <summary>
@@ -107,5 +130,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
             await db.SaveChangesAsync();
             return mapper.Map<ProductCategoryViewModel>(dbo);
         }
+
+
     }
 }

@@ -5,7 +5,7 @@ using Seminar_Tihomir_Samardzija.Models.ViewModel;
 
 namespace Seminar_Tihomir_Samardzija.Models.Binding
 {
-    public class ProductUpdateBinding
+    public class ProductUpdateBinding: ProductBase
     {
         //[ProductIdValidation]
         public int Id { get; set; }

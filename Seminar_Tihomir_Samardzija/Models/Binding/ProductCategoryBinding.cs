@@ -9,7 +9,7 @@ namespace Seminar_Tihomir_Samardzija.Models.Binding
 
     public class ProductCategoryUpdateBinding : ProductCategoryBinding
     {
-        // [ProductCategoryIdValidation]
+        [ProductCategoryIdValidation]
         public int Id { get; set; }
     }
 }

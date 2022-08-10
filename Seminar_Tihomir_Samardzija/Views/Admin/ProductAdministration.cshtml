@@ -13,6 +13,7 @@
             <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
                 <td>@product.Description</td>
                 <td>@product.Price</td>
                 <td>@product.Quantity</td>
+                <td> @Html.ActionLink("Edit","UpdateProduct","Admin",new {id= product.Id},new {@class = "btn btn-primary"})</td>
             </tr>
             counter++;
         }

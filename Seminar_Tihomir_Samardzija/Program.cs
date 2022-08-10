@@ -50,9 +50,6 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddSingleton<IIdentityService, IdentityService>();
-//builder.Services.AddScoped<IProductService, ProductService>();
-
 builder.Services.Configure<AppConfig>(builder.Configuration);
 builder.Services.AddSingleton<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IUserSevice, UserSevice>();
@@ -61,7 +58,7 @@ builder.Services.AddScoped<IValidationService, ValidationService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
-//builder.Services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, QueueProcessor>();
+builder.Services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
@@ -106,6 +103,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Services.GetService<IIdentityService>();

@@ -1,6 +1,6 @@
 ﻿@model Seminar_Tihomir_Samardzija.Models.ViewModel.ApplicationUserViewModel
 @using Seminar_Tihomir_Samardzija.Services.Interface;
-@inject IUserSevice userService
+@inject IUserService userService
 @{
     ViewData["Title"] = "EditUser";
     var userRoles = await userService.GetUserRoles();

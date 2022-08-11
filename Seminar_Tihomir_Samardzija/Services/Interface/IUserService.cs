@@ -4,7 +4,7 @@ using Seminar_Tihomir_Samardzija.Models.Dbo;
 using Seminar_Tihomir_Samardzija.Models.ViewModel;
 namespace Seminar_Tihomir_Samardzija.Services.Interface
 {
-    public interface IUserSevice
+    public interface IUserService
     {
         Task<ApplicationUserViewModel> UpdateUser(UserAdminUpdateBinding model);
         Task DeleteUserAsync(string id);

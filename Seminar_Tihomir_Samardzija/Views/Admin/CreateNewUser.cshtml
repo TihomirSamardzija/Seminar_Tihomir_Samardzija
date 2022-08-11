@@ -1,6 +1,6 @@
 ﻿@using Seminar_Tihomir_Samardzija.Services.Interface;
 @model Seminar_Tihomir_Samardzija.Models.Binding.UserAdminBinding
-@inject IUserSevice userService
+@inject IUserService userService
 @{
     var userRoles = await userService.GetUserRoles();
     ViewData["Title"] = "CreateNewUser";

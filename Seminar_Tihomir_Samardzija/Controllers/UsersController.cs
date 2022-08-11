@@ -7,11 +7,11 @@ using Seminar_Tihomir_Samardzija.Services.Interface;
 
 namespace Seminar_Tihomir_Samardzija.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        private readonly IUserSevice userSevice;
+        private readonly IUserService userSevice;
         private readonly SignInManager<ApplicationUser> signInManager;
-        public UserController(IUserSevice userSevice, SignInManager<ApplicationUser> signInManager)
+        public UsersController(IUserService userSevice, SignInManager<ApplicationUser> signInManager)
         {
             this.userSevice = userSevice;
             this.signInManager = signInManager;

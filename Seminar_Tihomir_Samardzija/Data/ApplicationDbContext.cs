@@ -67,11 +67,12 @@ namespace Seminar_Tihomir_Samardzija.Data
 
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet <Adress> Adress { get; set; }
+        public DbSet <Adress>? Adress { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductViewModel> ProductViewModel { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<ProductCategoryUpdateBinding>? ProductCategoryUpdateBinding { get; set; }
         public DbSet<FileStorage> FileStorage { get; set; }
+        public DbSet<Seminar_Tihomir_Samardzija.Models.ViewModel.ApplicationUserViewModel>? ApplicationUserViewModel { get; set; }
     }
 }

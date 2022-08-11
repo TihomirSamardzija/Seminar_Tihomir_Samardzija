@@ -13,11 +13,13 @@ namespace Seminar_Tihomir_Samardzija.Controllers
     {
         private readonly IProductService productService;
         private readonly IMapper mapper;
+        private readonly IUserService userService;
 
-        public AdminController(IProductService productService, IMapper mapper)
+        public AdminController(IProductService productService, IMapper mapper, IUserService userSevice)
         {
             this.productService = productService;
             this.mapper = mapper;
+            this.userService = userSevice;
         }
 
         [HttpGet]
@@ -91,5 +93,56 @@ namespace Seminar_Tihomir_Samardzija.Controllers
             await productService.AddProductCategoryAsync(model);
             return RedirectToAction("ProductAdministration");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Users()
+        {
+            var users = await userService.GetUsers();
+            return View(users);
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await userService.GetUser(id);
+            return View(user);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(UserAdminUpdateBinding model)
+        {
+            await userService.UpdateUser(model);
+            return RedirectToAction("Users");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            await userService.DeleteUserAsync(id);
+            return RedirectToAction("Users");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateNewUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewUser(UserAdminBinding model)
+        {
+            await userService.CreateUserAsync(model);
+            return RedirectToAction("Users");
+        }
+
+        public async Task<IActionResult> UserDetails(string id)
+        {
+            var users = await userService.GetUser(id);
+            return View(users);
+        }
+
     }
 }

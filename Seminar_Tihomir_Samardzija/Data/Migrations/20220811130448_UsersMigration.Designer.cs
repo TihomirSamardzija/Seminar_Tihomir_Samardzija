@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seminar_Tihomir_Samardzija.Data;
 
@@ -11,9 +12,10 @@ using Seminar_Tihomir_Samardzija.Data;
 namespace Seminar_Tihomir_Samardzija.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220811130448_UsersMigration")]
+    partial class UsersMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -376,57 +378,6 @@ namespace Seminar_Tihomir_Samardzija.Data.Migrations
                     b.ToTable("ProductCategory");
                 });
 
-            modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.AdressViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ApplicationUserViewModelId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserViewModelId");
-
-                    b.ToTable("AdressViewModel");
-                });
-
-            modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.ApplicationUserViewModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Firstname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lastname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ApplicationUserViewModel");
-                });
-
             modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.ProductCategoryViewModel", b =>
                 {
                     b.Property<int>("Id")
@@ -552,13 +503,6 @@ namespace Seminar_Tihomir_Samardzija.Data.Migrations
                     b.Navigation("ProductCategory");
                 });
 
-            modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.AdressViewModel", b =>
-                {
-                    b.HasOne("Seminar_Tihomir_Samardzija.Models.ViewModel.ApplicationUserViewModel", null)
-                        .WithMany("Adress")
-                        .HasForeignKey("ApplicationUserViewModelId");
-                });
-
             modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.ProductViewModel", b =>
                 {
                     b.HasOne("Seminar_Tihomir_Samardzija.Models.ViewModel.ProductCategoryViewModel", "ProductCategory")
@@ -569,11 +513,6 @@ namespace Seminar_Tihomir_Samardzija.Data.Migrations
                 });
 
             modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.Dbo.ApplicationUser", b =>
-                {
-                    b.Navigation("Adress");
-                });
-
-            modelBuilder.Entity("Seminar_Tihomir_Samardzija.Models.ViewModel.ApplicationUserViewModel", b =>
                 {
                     b.Navigation("Adress");
                 });

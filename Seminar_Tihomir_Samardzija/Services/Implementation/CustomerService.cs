@@ -22,8 +22,8 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         /// <summary>
         /// Dohvati adresu korisnika
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name = "userId" ></ param >
+        /// < returns ></ returns >
         public async Task<AdressViewModel> GetAdress(string userId)
         {
             var adress = await db.Adress.FirstOrDefaultAsync(x => x.ApplicationUser.Id == userId);

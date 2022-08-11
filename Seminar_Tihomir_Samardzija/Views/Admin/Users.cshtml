@@ -8,7 +8,7 @@
 <h1>Users</h1>
 
 <p>
-    @Html.ActionLink("Create", "CreateNewUser", new { /* id=item.PrimaryKey */ })
+    @Html.ActionLink("Dodaj", "CreateNewUser", new { /* id=item.PrimaryKey */ },new {@class = "btn btn-primary"})
 </p>
 <table class="table">
     <thead>
@@ -45,9 +45,9 @@
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditUser", new {  id=item.Id  }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "DeleteUser", new {  id=item.Id  })
+                    @Html.ActionLink("Edit", "EditUser", new {  id=item.Id  },new {@class = "btn btn-primary"}) |
+                    @Html.ActionLink("Delete", "DeleteUser", new {  id=item.Id  },new {@class = "btn btn-danger"}) |
+                    @Html.ActionLink("Details", "UserDetails", new { id=item.Id },new {@class = "btn btn-success"}) |
                 </td>
             </tr>
         }

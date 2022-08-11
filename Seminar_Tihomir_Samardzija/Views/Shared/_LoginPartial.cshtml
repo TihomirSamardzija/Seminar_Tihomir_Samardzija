@@ -5,59 +5,51 @@
 @using Seminar_Tihomir_Samardzija.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@inject IUserSevice appUserManager
+@inject IUserService appUserManager
 
 @{
     var myuser = await appUserManager.GetUser(User);
     var user = await UserManager.GetUserAsync(User);
 }
 
-<ul class="navbar-nav">
-    @if (user != null)
+@if (user != null)
+{
+    var userRoles = await UserManager.GetRolesAsync(user);
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.Firstname @user.Lastname!</a>
+    </li>
+    @switch (userRoles[0])
     {
-        var userRoles = await UserManager.GetRolesAsync(user);
+        case Roles.Admin:
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="@Url.Action("ProductAdministration", "Admin")">Administracija proizvoda</a>
 
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.Firstname @user.Lastname!</a>
-        </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="@Url.Action("Users", "Admin")">Administracija korisnika</a>
 
-        @switch (userRoles[0])
-        {
-            case Roles.Admin:
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="@Url.Action("ProductAdministration", "Admin")">Administracija proizvoda</a>
+            </li>
+            break;
+        case Roles.BasicUser:
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="@Url.Action("Index", "Home")">Index Page</a>
 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="@Url.Action("Users", "Admin")">Administracija korisnika</a>
-
-                </li>
-
-                break;
-
-            case Roles.BasicUser:
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="@Url.Action("Index", "Home")">IndexPage</a>
-
-                </li>
-                break;
-        }
-
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
-        </li>
+            </li>
+            break;
     }
-
-    else
-
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" href="@Url.Action("Registration", "User")">Registracija</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="@Url.Action("Registration", "User")">Registracija</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
 </ul>

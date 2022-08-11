@@ -35,6 +35,17 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         public async Task<ProductViewModel> AddProductAsync(ProductBinding model)
         {
             var dbo = mapper.Map<Product>(model);
+
+            if (model.ProductImg != null)
+            {
+                var fileResponse = await fileStorageService.AddFileToStorage(model.ProductImg);
+                if (fileResponse != null)
+                {
+                    dbo.ProductImgUrl = fileResponse.DownloadUrl;
+                }
+
+            }
+
             var productCategory = await db.ProductCategory.FindAsync(model.ProductCategoryId);
             if (productCategory == null)
             {
@@ -52,7 +63,9 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         /// <returns></returns>
         public async Task<ProductViewModel> GetProductAsync(int id)
         {
-            var dbo = await db.Product.FindAsync(id);
+            var dbo = await db.Product
+                .Include(x => x.ProductCategory)
+                .FirstOrDefaultAsync(x => x.Id == id);
             return mapper.Map<ProductViewModel>(dbo);
 
         }
@@ -63,7 +76,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         /// <returns></returns>
         public async Task<List<ProductViewModel>> GetProductsAsync()
         {
-            var dbo = await db.Product.ToListAsync();
+            var dbo = await db.Product.Include(x => x.ProductCategory).ToListAsync();
             return dbo.Select(x => mapper.Map<ProductViewModel>(x)).ToList();
 
         }

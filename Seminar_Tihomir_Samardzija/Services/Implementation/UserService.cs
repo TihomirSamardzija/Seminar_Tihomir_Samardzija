@@ -51,7 +51,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         public async Task<List<ApplicationUserViewModel>> GetUsers()
         {
             var dboUsers = await db.Users
-               // .Include(x => x.Adress)
+                .Include(x => x.Adress)
                 .ToListAsync();
             var response = dboUsers.Select(x => mapper.Map<ApplicationUserViewModel>(x)).ToList();
             response.ForEach(x => x.Role = GetUserRole(x.Id).Result);
@@ -76,7 +76,7 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
         public async Task<ApplicationUserViewModel> UpdateUser(UserAdminUpdateBinding model)
         {
             var dboUser = await db.Users
-               // .Include(x => x.Adress)
+                .Include(x => x.Adress)
                 .FirstOrDefaultAsync(x => x.Id == model.Id);
             var role = await db.Roles.FindAsync(model.RoleId);
 
@@ -219,8 +219,8 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
                 return null;
             }
             var user = mapper.Map<ApplicationUser>(model);
-            //var adress = mapper.Map<Adress>(model.UserAdress);
-            //user.Adress = new List<Adress>() { adress };
+            var adress = mapper.Map<Adress>(model.UserAdress);
+            user.Adress = new List<Adress>() { adress };
             var createdUser = await userManager.CreateAsync(user, model.Password);
             if (createdUser.Succeeded)
             {

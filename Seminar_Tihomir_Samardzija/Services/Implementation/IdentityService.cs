@@ -32,14 +32,14 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
                     UserName = "ivan@domena.com",
                     DOB = DateTime.Now.AddYears(-30),
                     PhoneNumber = "+3859912345678",
-                    //Adress = new List<Adress>
-                    //{
-                    //    new Adress
-                    //    {
-                    //        City = "Pozega",
-                    //        Street = "Glavna",
-                    //    }
-                    //}
+                    Adress = new List<Adress>
+                    {
+                        new Adress
+                        {
+                            City = "Pozega",
+                            Street = "Glavna",
+                        }
+                    }
 
                 }, "Pa$$word123", Roles.Admin).Wait();
 
@@ -51,14 +51,14 @@ namespace Seminar_Tihomir_Samardzija.Services.Implementation
                     UserName = "pero@domena.com",
                     DOB = DateTime.Now.AddYears(-45),
                     PhoneNumber = "+3859812345678",
-                    //Adress = new List<Adress>
-                    //{
-                    //    new Adress
-                    //    {
-                    //        City = "Pozega",
-                    //        Street = "Obilaznica",
-                    //    }
-                    //}
+                    Adress = new List<Adress>
+                    {
+                        new Adress
+                        {
+                            City = "Pozega",
+                            Street = "Obilaznica",
+                        }
+                    }
 
                 }, "Pa$$word12345", Roles.BasicUser).Wait();
             }

@@ -14,6 +14,7 @@
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
                 <td>@product.Price</td>
                 <td>@product.Quantity</td>
                 <td> @Html.ActionLink("Edit","UpdateProduct","Admin",new {id= product.Id},new {@class = "btn btn-primary"})</td>
+                <td> <a class="btn btn-danger" href="@Url.Action("DeleteProduct", "Admin")">Obriši proizvod</a>
             </tr>
             counter++;
         }

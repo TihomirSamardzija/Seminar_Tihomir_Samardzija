@@ -14,18 +14,17 @@ namespace Seminar_Tihomir_Samardzija.Mapping
 
             CreateMap<ProductBinding, Product>();
             CreateMap<Product, ProductViewModel>();
+            CreateMap<ProductViewModel, ProductUpdateBinding>();
+            CreateMap<ProductUpdateBinding, Product>();
 
             CreateMap<ProductCategoryBinding, ProductCategory>();
             CreateMap<ProductCategory, ProductCategoryViewModel>();
             CreateMap<ProductCategoryUpdateBinding, ProductCategory>();
 
-            CreateMap<ApplicationUser, ApplicationUserViewModel>();
-
-            CreateMap<ProductViewModel, ProductUpdateBinding>();
-            CreateMap<ProductUpdateBinding, Product>();
-
             CreateMap<AdressBinding, Adress>();
             CreateMap<Adress, AdressViewModel>();
+
+            CreateMap<ApplicationUser, ApplicationUserViewModel>();
             CreateMap<UserBinding, ApplicationUser>()
                 .ForMember(dst => dst.UserName, opts => opts.MapFrom(src => src.Email))
                 .ForMember(dst => dst.EmailConfirmed, opts => opts.MapFrom(src => true));
@@ -33,8 +32,6 @@ namespace Seminar_Tihomir_Samardzija.Mapping
 
             CreateMap<FileStorage, FileStorageViewModel>();
             CreateMap<FileStorage, FileStorageExpendedViewModel>();
-
-
             CreateMap<FileStorageViewModel, FileStorage>().
                 ForMember(dst => dst.Id, opts => opts.Ignore());
         }
